@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Bank Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #003366;
+            color: white;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #00509e;
+        }
+
+        .hamburger {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background-color: #003366;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 270px; /* Adjust to give space after sidebar */
+            padding: 20px;
+            flex: 1;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .main-content.collapsed {
+            margin-left: 20px; /* Adjust content margin when sidebar is hidden */
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .history, .loans {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #003366;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.visible {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="hamburger">☰</button>
+    <div class="sidebar" id="sidebar">
+        
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Send Money</a></li>
+            <li><a href="#">Transaction Log</a></li>
+            <li><a href="#">Loan</a></li>
+            <li><a href="#">Account Information</a></li>
+            <li><a href="#">Change Profile Pic</a></li>
+            <li><a href="#">Change PIN</a></li>
+            <li><a href="#">Change Password</a></li>
+            <li><a href="#">Need Help?</a></li>
+        </ul>
+
+        <button onclick="window.location.href='index.html';">Log out</button>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <div class="header">
+            <h1>Welcome, User!</h1>
+        </div>
+
+        <div class="card">
+            <h2>Account Overview</h2>
+            <p><strong>Account Name:</strong> John Doe</p>
+            <p><strong>Savings Balance:</strong> $25,000.00</p>
+        </div>
+
+        <div class="history">
+            <h2>Transaction History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5458741</td>
+                        <td>2023-11-25</td>
+                        <td>Credit</td>
+                        <td>$5,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>8741458</td>
+                        <td>2024-03-15</td>
+                        <td>Debit</td>
+                        <td>$2,000.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="loans">
+            <h2>Loan Repayment</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Loan ID</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>LOAN1023</td>
+                        <td>2024-02-15</td>
+                        <td>$10,000.00</td>
+                        <td>Paid</td>
+                    </tr>
+                    <tr>
+                        <td>LOAN2034</td>
+                        <td>2024-06-20</td>
+                        <td>$8,000.00</td>
+                        <td>Pending</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('visible');
+            mainContent.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+</html>

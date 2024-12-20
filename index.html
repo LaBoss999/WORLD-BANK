@@ -1,0 +1,105 @@
+<!DOCTYPE html>                    
+                      
+                      
+  
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The World Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+        .centered {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        .centered img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        .centered h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 0 auto;
+            width: 90%;
+            max-width: 400px;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-page" class="centered">
+        <img src="world bank.png" alt="The World Bank Logo">
+        <h1>Welcome to The World Bank</h1>
+        <form id="login-form">
+            <input type="text" id="user-id" placeholder="User ID" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="text" id="full-name" placeholder="Full Name" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginPage = document.getElementById("login-page");
+            const dashboardUrl = "dashboard.html"; // Placeholder URL for the dashboard page
+            const loginForm = document.getElementById("login-form");
+
+            loginForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const fullName = document.getElementById("full-name").value;
+                const userId = document.getElementById("user-id").value;
+                const password = document.getElementById("password").value;
+
+                // Check if all fields are filled
+                if (fullName && userId && password) {
+                    // Simulate storing user information (optional, for demo purposes)
+                    localStorage.setItem("fullName", fullName);
+                    localStorage.setItem("userId", userId);
+                    window.location.href = dashboardUrl;
+                } else {
+                    alert("Please fill in all the fields.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
